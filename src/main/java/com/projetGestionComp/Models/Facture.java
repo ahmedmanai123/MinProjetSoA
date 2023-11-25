@@ -19,6 +19,8 @@ public class Facture {
     private Long idFacture;
     private Double montantTotal;
     private Date dateFacture;
+    @ManyToOne
+    private Client client;
 
 
     @OneToMany(mappedBy = "facture")
