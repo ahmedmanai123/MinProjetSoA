@@ -21,6 +21,7 @@ public class ReglementController {
     }
 
     @GetMapping("/avecEtatPaiement")
+
     public List<ReglementDTO> getReglementsAvecEtatPaiement() {
         return reglementServiceImp.getReglementsAvecEtatPaiement();
     }
