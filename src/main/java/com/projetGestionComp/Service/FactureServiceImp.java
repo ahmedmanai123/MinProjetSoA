@@ -1,7 +1,9 @@
 package com.projetGestionComp.Service;
 
+import com.projetGestionComp.Execption.ClientNotFoundException;
 import com.projetGestionComp.Execption.FactureNotFoundException;
 import com.projetGestionComp.Models.Facture;
+import com.projetGestionComp.Repository.ClientRepository;
 import com.projetGestionComp.Repository.FactureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,9 +18,12 @@ public class FactureServiceImp implements FactureService{
     @Autowired
     private FactureRepository factureRepository;
 
+
+
     @Override
     public List<Facture> getAllFactures() {
         List<Facture> factures=factureRepository.findAll();
+
         return factures;
     }
 

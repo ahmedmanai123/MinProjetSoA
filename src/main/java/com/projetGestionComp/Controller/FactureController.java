@@ -1,5 +1,6 @@
 package com.projetGestionComp.Controller;
 
+import com.projetGestionComp.Execption.ClientNotFoundException;
 import com.projetGestionComp.Execption.FactureNotFoundException;
 import com.projetGestionComp.Models.Facture;
 import com.projetGestionComp.Service.FactureService;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
+import org.springframework.http.MediaType;
 
 @Controller
 @RestController
@@ -51,7 +52,8 @@ public class FactureController {
         return facture;
     }
 @PostMapping("/addFacture")
-    public Facture addFacture(@RequestBody Facture facture) {
+@Procedure(MediaType.APPLICATION_JSON_VALUE)
+public Facture addFacture(@RequestBody Facture facture) {
         factureService.addFacture(facture);
         return facture;
     }

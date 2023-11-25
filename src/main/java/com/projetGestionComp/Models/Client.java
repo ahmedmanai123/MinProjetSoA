@@ -1,9 +1,11 @@
 package com.projetGestionComp.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString(exclude = "factures") // Exclude factures from toString
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +21,6 @@ public class Client {
 
     private String name;
     private String email;
-    @OneToMany(mappedBy = "client")
-    private List<Facture> factures;
+
+
 }
