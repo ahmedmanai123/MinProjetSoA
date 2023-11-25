@@ -5,13 +5,12 @@ import com.projetGestionComp.Models.Client;
 import com.projetGestionComp.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
-public class ClientServiceImp {
+public class ClientServiceImp implements ClientService {
     @Autowired
     private ClientRepository clientRepository;
-
+@Override
     public Client getClient(long id) throws ClientNotFoundException {
         Client client= clientRepository.findById(id).orElseThrow(()->new ClientNotFoundException("client non existe!"));
         return client;

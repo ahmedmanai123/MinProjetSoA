@@ -1,4 +1,5 @@
 package com.projetGestionComp.Models;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.ToString;
 
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,21 +22,25 @@ public class Reglement {
     private Long idRegelment;
 
     private Date dateReglement;
+
     private Double montantTotal;
+
     private String type;
+
     private String modePaiement;
+
     private boolean paye;
+
     @Enumerated(EnumType.STRING)
     private EtatPaiement etatPaiement;
 
     @JsonIgnore
-    @ManyToOne
+    @OneToMany(mappedBy = "reglement")
     @JoinColumn(name = "idFacture")
     @ToString.Exclude
-    private Facture facture;
+    private List<Facture> factures;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-
-
 }

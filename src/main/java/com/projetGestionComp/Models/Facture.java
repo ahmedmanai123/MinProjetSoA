@@ -20,18 +20,19 @@ public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFacture;
+
     private Double montantTotal;
+
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Value("#{T(java.time.LocalDate).now()}")
     private Date dateFacture;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-
-    @OneToMany(mappedBy = "facture")
-
-    private List<Reglement> reglements;
+    @ManyToOne
+    private Reglement reglement;
 
     @Enumerated(EnumType.STRING)
     private EtatPaiement etatPaiement;

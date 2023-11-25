@@ -1,10 +1,7 @@
 package com.projetGestionComp.Service;
-
-import com.projetGestionComp.Execption.ClientNotFoundException;
 import com.projetGestionComp.Execption.FactureNotFoundException;
 import com.projetGestionComp.Models.Facture;
 
-import java.nio.channels.FileChannel;
 import java.util.List;
 
 public interface FactureService {
