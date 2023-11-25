@@ -92,7 +92,7 @@ public class ReglementService {
         reglementRepository.save(reglement);
 
         if (facture.getReglements().stream().allMatch(Reglement::isPaye)) {
-            facture.setPayee(true);
+            facture.setEtatPaiement(EtatPaiement.PAYEE);
             factureRepository.save(facture);  // Assurez-vous d'utiliser l'instance de FactureRepository pour sauvegarder
         }
     }
