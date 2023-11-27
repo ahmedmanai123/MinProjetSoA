@@ -21,21 +21,32 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFacture;
 
-    private Double montantTotal;
-
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    @Value("#{T(java.time.LocalDate).now()}")
-    private Date dateFacture;
+    @OneToOne
+    private Devis devis;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne
-    private Reglement reglement;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @Value("#{T(java.time.LocalDate).now()}")
+    private Date dateFacture;
+
+    @OneToMany(mappedBy ="facture")
+    @JsonIgnore
+    private List<FactureDetail> factureDetails;
+
+    private Double montantTotal;
 
     @Enumerated(EnumType.STRING)
     private EtatPaiement etatPaiement;
+
+    @ManyToOne
+    @JoinColumn(name = "reglement")
+    private Reglement reglement;
+
+
+
 
 
 }

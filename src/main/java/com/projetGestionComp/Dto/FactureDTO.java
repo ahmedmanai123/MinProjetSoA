@@ -18,7 +18,7 @@ public class FactureDTO {
     private Double montantTotal;
     private Date dateFacture;
     private Client client;
-    private List<Reglement> reglements;
+    private Reglement reglement;
     private EtatPaiement etatPaiement;
 
 

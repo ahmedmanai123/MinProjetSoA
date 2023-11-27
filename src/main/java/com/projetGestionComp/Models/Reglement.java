@@ -36,7 +36,6 @@ public class Reglement {
 
     @JsonIgnore
     @OneToMany(mappedBy = "reglement")
-    @JoinColumn(name = "idFacture")
     @ToString.Exclude
     private List<Facture> factures;
 

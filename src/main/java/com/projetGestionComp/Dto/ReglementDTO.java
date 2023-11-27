@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 
 import java.util.Date;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +22,7 @@ public class ReglementDTO {
     private String modePaiement;
     private boolean paye;
     private EtatPaiement etatPaiement;
-    private Facture facture;
+    private List<Facture> factures;
     private Client client;
 
 }

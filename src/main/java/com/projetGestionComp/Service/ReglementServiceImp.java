@@ -37,24 +37,18 @@ public class ReglementServiceImp implements ReglementService {
         dto.setMontantTotal(reglement.getMontantTotal());
         dto.setType(reglement.getType());
         dto.setModePaiement(reglement.getModePaiement());
-        dto.setFacture(reglement.getFacture());
+        dto.setFactures(reglement.getFactures());
         dto.setEtatPaiement(getEtatPaiement(reglement));
 
         return dto;
     }
     @Override
     public EtatPaiement getEtatPaiement(Reglement reglement) {
-        Facture facture = reglement.getFacture();
+        Facture facture = (Facture) reglement.getFactures();
 
         if (facture == null) {
             return EtatPaiement.INCONNU;
-        }
-
-        if (facture.getReglements().stream().allMatch(Reglement::isPaye)) {
-            return EtatPaiement.PAYEE;
-        } else {
-            return EtatPaiement.NON_PAYEE;
-        }
+        }else return facture.getReglement().getEtatPaiement();
     }
 
 
@@ -76,7 +70,7 @@ public class ReglementServiceImp implements ReglementService {
     @Override
     public void payerFacture(Reglement reglement) {
         // Récupérez la facture associée au règlement
-        Facture facture = reglement.getFacture();
+        List<Facture> factures = reglement.getFactures();
 
         // Vérifiez si la facture est déjà payée
         if (getEtatPaiement(reglement) == EtatPaiement.PAYEE) {
@@ -92,10 +86,12 @@ public class ReglementServiceImp implements ReglementService {
         reglement.setPaye(true);
         reglementRepository.save(reglement);
 
-        if (facture.getReglements().stream().allMatch(Reglement::isPaye)) {
+        factures.forEach(facture -> {
+        if (facture.getReglement().getEtatPaiement()!=EtatPaiement.PAYEE) {
             facture.setEtatPaiement(EtatPaiement.PAYEE);
             factureRepository.save(facture);  // Assurez-vous d'utiliser l'instance de FactureRepository pour sauvegarder
         }
+        });
     }
 
 
@@ -121,7 +117,7 @@ public class ReglementServiceImp implements ReglementService {
                     dto.setMontantTotal(reglement.getMontantTotal());
                     dto.setType(reglement.getType());
                     dto.setModePaiement(reglement.getModePaiement());
-                    dto.setFacture(reglement.getFacture());
+                    dto.setFactures(reglement.getFactures());
 
                     // Ajoutez la logique pour déterminer l'état de paiement en fonction des règlements associés
                     dto.setEtatPaiement(getEtatPaiement(reglement));

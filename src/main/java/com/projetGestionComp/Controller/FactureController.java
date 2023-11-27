@@ -1,9 +1,8 @@
 package com.projetGestionComp.Controller;
 
-import com.projetGestionComp.Execption.ClientNotFoundException;
 import com.projetGestionComp.Execption.FactureNotFoundException;
 import com.projetGestionComp.Models.Facture;
-import com.projetGestionComp.Service.FactureService;
+import com.projetGestionComp.Service.FactureServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.http.MediaType;
@@ -20,9 +19,7 @@ import org.springframework.http.MediaType;
 public class FactureController {
 
     @Autowired
-    private FactureService factureService;
-
-
+    private FactureServiceImp factureService;
     @GetMapping("/allFactures")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
     public List<Facture> getAllFactures() {
