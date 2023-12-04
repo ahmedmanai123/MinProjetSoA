@@ -12,11 +12,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 @Service
 public class ReglementServiceImp implements ReglementService {
@@ -78,5 +76,35 @@ public class ReglementServiceImp implements ReglementService {
             return null; // or handle the exception as needed
         }
     }
+    @Override
+    public Integer nmbrReglementEnEspece(){
+        return reglementRepository.nmbrReglementEnEspece();
+    }
+
+    @Override
+    public Integer nmbrReglementEnCheque(){
+        return reglementRepository.nmbrReglementEnCheque();
+    }
+
+    @Override
+    public Integer nmbrReglementEnligne(){
+        return reglementRepository.nmbrReglementEnligne();
+    }
+
+    @Override
+    public List<Map<String, Object>> findTotalAmountPerDayLast7Days() {
+        return reglementRepository.findTotalAmountPerDayLast7Days();
+    }
+    @Override
+    public List<Map<String, Object>> getTotalAmountPerMonthLast7Months() {
+        return reglementRepository.findTotalAmountPerMonthLast7Months();
+    }
+
+    @Override
+    public List<Map<String, Object>> findTotalAmountPerYearLast7Years(){
+        return reglementRepository.findTotalAmountPerYearLast7Years();
+    }
+
+
 
 }
