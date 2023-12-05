@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -19,7 +20,7 @@ public class Reglement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRegelment;
 
-    private Date dateReglement;
+    private LocalDate dateReglement;
     private Double montantTotal;
     @Enumerated(EnumType.STRING)
     private modeReglement modePaiement;

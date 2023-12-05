@@ -5,7 +5,8 @@ import com.projetGestionComp.Models.Client;
 import com.projetGestionComp.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -19,9 +20,27 @@ public class ClientServiceImp implements ClientService {
         return client;
     }
 
+
+
+    public Long getClientIdByEmail(String email, String motdepass) {
+        List<Client> clients = clientRepository.findAll();
+
+        for (Client c : clients) {
+            if (c.getEmail().equals(email) && c.getMotdepass().equals(motdepass)) {
+                return c.getId();
+            }
+        }
+
+        return null; // or -1 or any default value indicating user not found
+    }
+
+
+
+
     @Override
     public List<Client> ClientNonPayee(){
         return clientRepository.ClientNonPayee() ;
 
     }
+
 }

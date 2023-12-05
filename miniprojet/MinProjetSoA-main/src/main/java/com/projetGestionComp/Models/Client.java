@@ -22,6 +22,7 @@ public class Client {
 
     private String name;
     private String email;
+    private  String motdepass;
     @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Reglement> reglements;
