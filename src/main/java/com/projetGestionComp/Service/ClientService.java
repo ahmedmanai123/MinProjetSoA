@@ -1,4 +1,5 @@
 package com.projetGestionComp.Service;
 
-public class ReglementImpl {
+public interface ClientService {
+
 }

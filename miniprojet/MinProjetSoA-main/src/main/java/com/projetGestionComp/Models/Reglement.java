@@ -22,7 +22,8 @@ public class Reglement {
 
     private LocalDate dateReglement;
     private Double montantTotal;
-    private String modePaiement;
+    @Enumerated(EnumType.STRING)
+    private modeReglement modePaiement;
     private boolean paye;
     @Enumerated(EnumType.STRING)
     @ToString.Exclude

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import java.util.List;
+
 @Service
-public class ClientServiceImp {
+public class ClientServiceImp implements ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
@@ -17,6 +19,7 @@ public class ClientServiceImp {
         Client client= clientRepository.findById(id).orElseThrow(()->new ClientNotFoundException("client non existe!"));
         return client;
     }
+
 
 
     public Long getClientIdByEmail(String email, String motdepass) {
@@ -33,5 +36,11 @@ public class ClientServiceImp {
 
 
 
+
+    @Override
+    public List<Client> ClientNonPayee(){
+        return clientRepository.ClientNonPayee() ;
+
+    }
 
 }

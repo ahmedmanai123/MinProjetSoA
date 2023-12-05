@@ -5,7 +5,10 @@ import com.projetGestionComp.Execption.InvoiceNotBelongingToClientException;
 import com.projetGestionComp.Execption.InvoiceNotFoundException;
 import com.projetGestionComp.Models.Client;
 import com.projetGestionComp.Models.Reglement;
+
 import com.projetGestionComp.Service.ClientServiceImp;
+=======
+import com.projetGestionComp.Service.ReglementService;
 import com.projetGestionComp.Service.ReglementServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +20,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @CrossOrigin(origins = "http://localhost:4200",allowCredentials = "true")
+=======
+@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 
 @RequestMapping("/api/reglements")
@@ -26,6 +33,9 @@ public class ReglementController {
     private final ReglementServiceImp reglementServiceImp;
    @Autowired
     private ClientServiceImp clientServiceImp;
+    @Autowired
+    private  ReglementService reglementService;
+
     @Autowired
     public ReglementController(ReglementServiceImp reglementServiceImp) {
         this.reglementServiceImp = reglementServiceImp;
@@ -92,23 +102,43 @@ public class ReglementController {
      public  Double getmotparSemaine(){
         return reglementServiceImp.getTotalpayreglementSemaine();
      }
-   // @GetMapping("/parjour")
-   // public  Double getTotalPayReglementDay(){
-    //    return reglementServiceImp.getTotalPayReglementDay();
-   // }
-   // @GetMapping("/rgpay")
-    //public  Long getCountOfPaidReglements(){
-      //  return reglementServiceImp.getCountOfPaidReglements();
-
-   // @GetMapping("/regnopay")
-   // public  Long getCountOfUnpaidReglements(){
-       // return reglementServiceImp.getCountOfUnpaidReglements();}
+  
 
 
 
 
 
 
+
+    @GetMapping("/nmbrReglementEnEspece")
+    public Integer nmbrReglementEnEspece(){
+        return reglementService.nmbrReglementEnEspece();
+    }
+
+    @GetMapping("/nmbrReglementEnCheque")
+    public Integer nmbrReglementEnCheque(){
+        return reglementService.nmbrReglementEnCheque();
+    }
+
+    @GetMapping("/nmbrReglementEnligne")
+    public Integer nmbrReglementEnligne(){
+        return reglementService.nmbrReglementEnligne();
+    }
+
+    @GetMapping("/findTotalAmountPerDayLast7Days")
+    public List<Map<String, Object>> findTotalAmountPerDayLast7Days(){
+        return reglementService.findTotalAmountPerDayLast7Days();
+    }
+
+    @GetMapping("/getTotalAmountPerMonthLast7Months")
+    public List<Map<String, Object>> getTotalAmountPerMonthLast7Months(){
+        return reglementService.getTotalAmountPerMonthLast7Months();
+    }
+
+    @GetMapping("/findTotalAmountPerYearLast7Years")
+    public List<Map<String,Object>> findTotalAmountPerYearLast7Years(){
+        return reglementService.findTotalAmountPerYearLast7Years();
+    }
 
 
 
